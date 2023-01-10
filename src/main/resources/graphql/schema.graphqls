@@ -1,0 +1,78 @@
+type SalesPerson {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    phoneNumber: String!
+    address: String!
+    city: String!
+    state: String!
+    zipCode: String!
+}
+
+type Customer {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    phoneNumber: String!
+    address: String!
+    city: String!
+    state: String!
+    zipCode: String!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    size: Int!
+    variety: String!
+    price: Float!
+    status: String!
+}
+
+type Order {
+    id: ID!
+    customer: Customer!
+    salesPerson: SalesPerson!
+}
+
+type OrderLine {
+    id: ID!
+    order: Order!
+    product: Product!
+    quantity: Int!
+}
+
+input CustomerInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    phoneNumber: String!
+    address: String!
+    city: String!
+    state: String!
+    zipCode: String!
+}
+
+type Query{
+    hello: String!
+    customers: [Customer]!
+    customerById(id: ID): Customer
+    customerByEmail(email: String): Customer
+
+    salesPeople: [SalesPerson]!
+    salesPersonById(id: ID): SalesPerson
+
+    products: [Product]!
+    productById: Product
+
+    orders: [Order]!
+    orderById: Order
+
+    orderLines: [OrderLine]!
+}
+
+type Mutation {
+    addCustomer(input: CustomerInput): Customer
+}
